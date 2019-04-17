@@ -5,6 +5,7 @@ import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const burger = props => { 
 
+	// making a JSX elements array of all the ingredients
 	let transformedIngredients = [];
 	for(let ing in props.ingredients) {
 		for(let i = 0; i < props.ingredients[ing]; i++) {
@@ -12,8 +13,10 @@ const burger = props => {
 		}
 	}
 
-	// console.log(props.ingredients);
-	// console.log(props.ingredients['salad']);	
+	if (transformedIngredients.length === 0) {
+		transformedIngredients = <p>Let's make it tasty by adding some ingredients?</p>
+	}
+
 	console.log(transformedIngredients);
 
 	return (
