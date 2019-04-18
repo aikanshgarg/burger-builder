@@ -30,13 +30,20 @@ class BurgerBuilder extends Component {
 	}
 
 	// logic to check if ORDER NOW btn is clicked 
-
-	// it will give an error as 'this' keyword is not bind when we call this method on an event (btn click here)
+	//------ it will give an error as 'this' keyword is not bind when we call this method on an event (btn click here)
 	// purchaseHandler() {
 	// 	this.setState({purchasing: true});
 	// }
 	purchaseHandler = () => {
 		this.setState({purchasing: true});
+	}
+
+	cancelPurchaseHandler = () => {
+		this.setState({purchasing: false});
+	}
+
+	continuePurchaseHandler = () => {
+		alert('You can continue!!!');
 	}
 
 	// logic to disable/enable ORDER NOW button: this fn is executed each time an ing is added/removed
@@ -98,8 +105,13 @@ class BurgerBuilder extends Component {
 		// disabledInfo ===> {salad: true, meat:false, ...}
 		return (
 			<Aux>
-				<Modal show={this.state.purchasing}>
-					<OrderSummary ingredients={this.state.ingredients} />
+				<Modal show={this.state.purchasing} modalClosed={this.cancelPurchaseHandler}>
+					<OrderSummary 
+						ingredients={this.state.ingredients} 
+						purchaseCancel={this.cancelPurchaseHandler} 
+						purchaseContinue={this.continuePurchaseHandler}
+						price={this.state.totalPrice}
+					/>
 				</Modal>
 				<Burger ingredients={this.state.ingredients}/>
 				<BuildControls 
