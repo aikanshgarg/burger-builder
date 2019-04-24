@@ -19,13 +19,13 @@ class ContactData extends Component {
 		// prevent the form from submitting
 		event.preventDefault();
 		// ingredients + price are passed from the checkout component as props
-		console.log(this.props.ingredients);
-		console.log(this.props.price);
+		//console.log(this.props.ingredients);
+		//console.log(this.props.price);
 
 		this.setState({loading: true});
 		const order = {
-			ingredients: this.state.ingredients,
-			price: this.state.totalPrice,
+			ingredients: this.props.ingredients,
+			price: this.props.price,
 			customer: {
 				name: 'Aikansh',
 				address: {
