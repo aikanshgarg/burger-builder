@@ -7,19 +7,20 @@ import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component {
 
-	// re rendering the component only when show true/modal is shown 
+	// re-rendering the component only when show true/modal is shown OR
+	// the content inside modal is changed (spinner or summary)
 	shouldComponentUpdate(nextProps, nextState) {
-		return nextProps.show !== this.props.show;
+		return ((nextProps.show !== this.props.show) || (nextProps.children !== this.children));
 	}
 
 	componentWillUpdate() {
-		console.log('[Modal.js] componentWillUpdate');
+		//console.log('[Modal.js] componentWillUpdate');
 	}
 
 	render() {
 		return (
 			<Aux>
-				<Backdrop show={this.props.show}	clicked={this.props.modalClosed} />
+				<Backdrop show={this.props.show} clicked={this.props.modalClosed} />
 				<div 
 					className={styles.Modal} 
 					style={{ 
